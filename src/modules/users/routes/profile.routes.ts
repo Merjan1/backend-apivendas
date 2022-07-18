@@ -11,7 +11,7 @@ profileRouter.use(isAuthenticated);
 
 profileRouter.get('/', profileController.show);
 
-profileRouter.post(
+profileRouter.put(
   '/',
   celebrate({
     [Segments.BODY]: {
