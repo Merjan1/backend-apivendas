@@ -21,7 +21,7 @@ export class AddCustomerIdToOrders1609037132700 implements MigrationInterface {
       new TableForeignKey({
         name: 'OrdersCustomer',
         columnNames: ['customer_id'],
-        referencedTableName: 'customers',
+        referencedTableName: 'custormers',
         referencedColumnNames: ['id'],
         onDelete: 'SET NULL',
       }),

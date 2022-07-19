@@ -27,7 +27,7 @@ export class CreateCustomers1658170499323 implements MigrationInterface {
             default: 'now()',
           },
           {
-            name: 'updated_at',
+            name: 'updated_atcustomers',
             type: 'timestamp with time zone',
             default: 'now()',
           },
