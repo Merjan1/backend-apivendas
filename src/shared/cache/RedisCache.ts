@@ -4,9 +4,13 @@ import cacheConfig from '@config/cache';
 
 export default class RedisCache {
   private client: RedisClient;
+  private connected = false;
 
   constructor() {
-    this.client = new Redis(cacheConfig.config.redis);
+    if (!this.connected) {
+      this.client = new Redis(cacheConfig.config.redis);
+      this.connected = true;
+    }
   }
 
   public async save(key: string, value: any): Promise<void> {
