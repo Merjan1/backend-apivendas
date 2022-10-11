@@ -1,18 +1,19 @@
-import { getCustomRepository } from 'typeorm';
+import { injectable, inject } from 'tsyringe';
 
-import { ProductRepository } from '../typeorm/repositories/ProductsRepository';
 import AppError from '@shared/errors/AppError';
 import RedisCache from '@shared/cache/RedisCache';
+import { IProductsRepository } from '../domain/repositories/IProductsRepository';
+import { IDeleteProduct } from '../domain/models/IDeleteProduct';
 
-interface IRquest {
-  id: string;
-}
-
+@injectable()
 class DeleteProductService {
-  public async execute({ id }: IRquest): Promise<void> {
-    const productsRepository = getCustomRepository(ProductRepository);
+  constructor(
+    @inject('ProductsRepository')
+    private productsRepository: IProductsRepository,
+  ) {}
 
-    const product = await productsRepository.findOne(id);
+  public async execute({ id }: IDeleteProduct): Promise<void> {
+    const product = await this.productsRepository.findById(id);
 
     if (!product) {
       throw new AppError('Product not found');
@@ -21,7 +22,7 @@ class DeleteProductService {
     const redisCache = new RedisCache();
 
     await redisCache.invalidate('api-vendas-PRODUCT_LIST');
-    await productsRepository.remove(product);
+    await this.productsRepository.remove(product);
   }
 }
 
