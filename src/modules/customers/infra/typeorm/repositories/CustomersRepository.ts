@@ -29,7 +29,7 @@ class CustomersRepository implements ICustomersRepository {
     await this.ormRepository.remove(customer);
   }
 
-  public async findAll(): Promise<Customer[]> {
+  public async findAll(): Promise<Customer[] | undefined> {
     const customer = await this.ormRepository.find();
 
     return customer;

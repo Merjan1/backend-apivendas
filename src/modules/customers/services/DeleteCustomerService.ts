@@ -1,5 +1,5 @@
-import AppError from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
+import AppError from '@shared/errors/AppError';
 
 import { IDeleteCustomer } from '../domain/models/IDeleteCustomer';
 import { ICustomersRepository } from '../domain/repositories/ICustomersRepository';
@@ -7,7 +7,7 @@ import { ICustomersRepository } from '../domain/repositories/ICustomersRepositor
 @injectable()
 class DeleteCustomerService {
   constructor(
-    @inject('CustomerRepository')
+    @inject('CustomersRepository')
     private customersRepository: ICustomersRepository,
   ) {}
 
