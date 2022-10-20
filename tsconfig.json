@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
     "target": "es2016",
+    "module": "commonjs",
     "lib": ["es6"],
+    "outDir": "build",
+    "rootDir": "src",
+    "strict": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "commonjs",
-    "rootDir": "src",
     "baseUrl": "./",
     "paths": {
       "@config/*": ["src/config/*"],
@@ -13,14 +15,14 @@
       "@shared/*": ["src/shared/*"]
     },
     "typeRoots": ["@types", "./node_modules/@types"],
-    "types": ["node"],
+    "types": ["node", "@types/jest"],
     "resolveJsonModule": true,
-    "outDir": "build",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["test.ts", "**/*.spec.ts"]
 }
