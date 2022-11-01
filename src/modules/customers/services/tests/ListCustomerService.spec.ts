@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 
-import AppError from '../../../../shared/errors/AppError';
 import FakeCustomersRepository from '../../domain/repositories/fakes/FakeCustomersRepository';
 import ListCustomerService from '../ListCustomerService';
 
