@@ -29,28 +29,35 @@ export default class FakeCustomersRepository implements ICustomersRepository {
     return customer;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  public async remove(customer: Customer): Promise<void> {}
+  public async remove(customer: Customer): Promise<void> {
+    const findIndex = this.customers.findIndex(
+      findCustomer => findCustomer.id === customer.id,
+    );
 
-  public async findAll(): Promise<Customer[] | undefined> {
-    return undefined;
+    console.log('Customer Array Index:', findIndex);
+
+    this.customers.splice(findIndex, findIndex);
   }
 
-  public async findByName(name: string): Promise<Customer | undefined> {
+  public async findAll(): Promise<Customer[] | null> {
+    return this.customers;
+  }
+
+  public async findByName(name: string): Promise<Customer | null> {
     const customer = this.customers.find(customer => customer.name === name);
 
-    return customer;
+    return customer as Customer | null;
   }
 
-  public async findById(id: string): Promise<Customer | undefined> {
+  public async findById(id: string): Promise<Customer | null> {
     const customer = this.customers.find(customer => customer.id === id);
 
-    return customer;
+    return customer as Customer | null;
   }
 
-  public async findByEmail(email: string): Promise<Customer | undefined> {
+  public async findByEmail(email: string): Promise<Customer | null> {
     const customer = this.customers.find(customer => customer.email === email);
 
-    return customer;
+    return customer as Customer | null;
   }
 }
