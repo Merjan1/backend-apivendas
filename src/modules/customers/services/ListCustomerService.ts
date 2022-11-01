@@ -10,10 +10,10 @@ class ListCustomerService {
     private customersRepository: ICustomersRepository,
   ) {}
 
-  public async execute(): Promise<Customer[] | undefined> {
+  public async execute(): Promise<Customer[] | null> {
     const customers = await this.customersRepository.findAll();
 
-    return customers;
+    return customers as Customer[] | null;
   }
 }
 
